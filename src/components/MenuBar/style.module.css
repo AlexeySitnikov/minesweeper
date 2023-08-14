@@ -1,0 +1,10 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.counterButtonClock{
+  display: flex;
+  justify-content: space-evenly;
+}
