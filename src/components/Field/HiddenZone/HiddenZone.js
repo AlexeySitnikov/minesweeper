@@ -1,6 +1,6 @@
 import style from './style.module.css'
 
-export function HiddenZone() {
+export function HiddenZone({ el }) {
   const onClickFieldHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -9,7 +9,7 @@ export function HiddenZone() {
 
   return (
     <div>
-      <input type="button" className={`${style.hiddenZone}`} onMouseDown={onClickFieldHandler} onContextMenu={(e) => (e.preventDefault())} />
+      <input type="button" className={`${style.hiddenZone}`} onMouseDown={onClickFieldHandler} onContextMenu={(e) => (e.preventDefault())} value={el} />
     </div>
   )
 }

@@ -1,20 +1,19 @@
 export function getField(vertical, horizontal, mines) {
-  const field = [[]]
-
-  for (let x = 0; x < vertical; x += 1) {
-    for (let y = 0; y < horizontal; y += 1) {
-      field[x][y] = 0
+  const field = []
+  for (let i = 0; i < vertical; i += 1) {
+    field[i] = []
+    for (let j = 0; j < horizontal; j += 1) {
+      field[i][j] = 0
     }
   }
-  console.log(field)
+
   for (let i = 0; i < mines; i += 1) {
-    const x = Math.floor(Math.random() * (horizontal - 1 + 1)) + 1
-    const y = Math.floor(Math.random() * (vertical - 1 + 1)) + 1
-    // if (field[x][y] !== 1) {
-    //   field[x][y] = 1
-    // }
-    console.log(field[x][y])
-    // console.log(i)
+    const x = Math.floor(Math.random() * (vertical - 1 - 0 + 1) + 0)
+    const y = Math.floor(Math.random() * (horizontal - 1 - 0 + 1) + 0)
+    if (field[x][y] !== 'mine') {
+      field[x][y] = 'mine'
+    }
   }
+
   return (field)
 }
