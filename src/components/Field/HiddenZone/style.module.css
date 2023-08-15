@@ -1,4 +1,7 @@
 .hiddenZone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #444;
   width: 44px;
   height: 44px;
@@ -9,4 +12,29 @@
 
 .hiddenZone:hover{
   background-color: #ec8908;
+}
+
+.digits{
+  background-color: transparent;
+  color: red;
+}
+
+.digit_1{
+  background-color: transparent;
+  color: blue;
+}
+
+.digit_2{
+  background-color: transparent;
+  color: green;
+}
+
+.digit_3{
+  background-color: transparent;
+  color: red;
+}
+
+.digit_4{
+  background-color: transparent;
+  color: darkgreen;
 }
