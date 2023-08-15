@@ -1,26 +1,26 @@
 /* eslint-disable no-nested-ternary */
 // import mineRed from '../../constrains/mineRed.jpg'
+import { useState } from 'react'
 import style from './style.module.css'
 
 export function HiddenZone({ el }) {
+  const [hidden, setHidden] = useState(true)
+
   const onClickFieldHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    console.log(e.buttons)
+    if (hidden && (e.buttons === 1)) {
+      setHidden(false)
+      console.log(el)
+    }
   }
 
   return (
     <div className={`${style.hiddenZone}`}>
       <input
-        className={(el === 1)
-          ? `${style.digit_1}`
-          : (el === 2)
-            ? `${style.digit_2}`
-            : (el === 3)
-              ? `${style.digit_3}`
-              : (el === 4)
-                ? `${style.digit_4}`
-                : `${style.digits}`}
+        className={(hidden)
+          ? `${style.hidden}`
+          : `${style.unhidden}`}
         type="button"
         onMouseDown={onClickFieldHandler}
         onContextMenu={(e) => (e.preventDefault())}

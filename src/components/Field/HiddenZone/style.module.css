@@ -38,3 +38,12 @@
   background-color: transparent;
   color: darkgreen;
 }
+
+.hidden{
+  background-color: #444;
+  color: #444;
+}
+
+.unhidden{
+  background-color: transparent;
+}
