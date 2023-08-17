@@ -4,16 +4,22 @@
 import { useState } from 'react'
 import style from './style.module.css'
 import mine from '../../constrains/mineRed.jpg'
+import flagLogo from '../../constrains/flag.png'
 
 export function HiddenZone({ el }) {
   const [hidden, setHidden] = useState(true)
+  const [flag, setFlag] = useState(false)
 
   const onClickFieldHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    if (hidden && (e.buttons === 1)) {
+    if (hidden && (!flag) && (
+      ((e.button === 0) && (e.buttons === 3)) || ((e.button === 0) && (e.buttons === 1))
+    )) {
       setHidden(false)
-      console.log(el)
+    }
+    if (hidden && (e.buttons === 2)) {
+      setFlag(!flag)
     }
   }
 
@@ -48,7 +54,10 @@ export function HiddenZone({ el }) {
             </p>
           )}
 
-        <div className={(hidden) ? `${style.hideSquare}` : `${style.unhideSquare}`} />
+        <div className={(hidden) ? `${style.hideSquare}` : `${style.unhideSquare}`}>
+          {(flag) ? <img className={`${style.flag}`} src={`${flagLogo}`} alt="flag" /> : ''}
+
+        </div>
 
       </div>
     </div>
