@@ -1,49 +1,96 @@
-.hiddenZone {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #444;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #32557f;
-  border-radius: 5%;
-  /* margin: 2px; */
-}
-
-.hiddenZone:hover{
-  background-color: #ec8908;
-}
-
-.digits{
-  background-color: transparent;
-  color: red;
+.container{
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  position: relative;
+  background: #c0c0c0;
+  margin: 1px;
 }
 
 .digit_1{
-  background-color: transparent;
-  color: blue;
+  color:blue;
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .digit_2{
-  background-color: transparent;
-  color: green;
+  color:green;
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .digit_3{
-  background-color: transparent;
-  color: red;
+  color:red;
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .digit_4{
-  background-color: transparent;
-  color: darkgreen;
+  color:darkblue;
+  font-weight: 800;
+  font-size: 20px;
 }
 
-.hidden{
-  background-color: #444;
-  color: #444;
+.digit_5{
+  color:brown;
+  font-weight: 800;
+  font-size: 20px;
 }
 
-.unhidden{
-  background-color: transparent;
+.digit_6{
+  color:cyan;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.digit_7{
+  color:violet;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.digit_8{
+  color:blueviolet;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.mine{
+  width: 75%;
+  height: 75%;
+}
+
+
+.square{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  background: #c0c0c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1px dotted gray;
+}
+
+.hideSquare:hover{
+  background-color: chocolate;
+}
+
+.hideSquare{
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  background: #c0c0c0;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.unhideSquare{
+  display: none;
 }
