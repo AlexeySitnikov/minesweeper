@@ -1,5 +1,5 @@
 import './App.css'
-import { Field } from './components/Field/Filed'
+import { Field } from './components/Field/Field'
 
 function App() {
   return (
