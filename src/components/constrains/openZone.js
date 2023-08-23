@@ -59,7 +59,7 @@ export function openZone({
       }
     }
   }
-  if ((column === 0) && (row !== 0)) {
+  if ((column === 0) && (row !== 0) && (row !== ROW_NUMBER - 1)) {
     if (currentField[column][row - 1].flag) {
       flags += 1
     }
@@ -93,7 +93,7 @@ export function openZone({
       }
     }
   }
-  if ((column === COLUMN_NUMBER - 1) && (row !== 0)) {
+  if ((column === COLUMN_NUMBER - 1) && (row !== 0) && (row !== ROW_NUMBER - 1)) {
     if (currentField[column][row + 1].flag) {
       flags += 1
     }
@@ -127,7 +127,7 @@ export function openZone({
       }
     }
   }
-  if ((row === 0) && (column !== 0)) {
+  if ((row === 0) && (column !== 0) && (column !== COLUMN_NUMBER - 1)) {
     if (currentField[column - 1][row].flag) {
       flags += 1
     }
@@ -161,7 +161,7 @@ export function openZone({
       }
     }
   }
-  if ((row === ROW_NUMBER - 1) && (column !== 0)) {
+  if ((row === ROW_NUMBER - 1) && (column !== 0) && (column !== COLUMN_NUMBER - 1)) {
     if (currentField[column - 1][row].flag) {
       flags += 1
     }
@@ -192,6 +192,94 @@ export function openZone({
       }
       if (!currentField[column + 1][row].flag) {
         currentField[column + 1][row].hide = false
+      }
+    }
+  }
+  if ((column === 0) && (row === 0)) {
+    if (currentField[column][row + 1].flag) {
+      flags += 1
+    }
+    if (currentField[column + 1][row + 1].flag) {
+      flags += 1
+    }
+    if (currentField[column + 1][row].flag) {
+      flags += 1
+    }
+    if (mines === flags) {
+      if (!currentField[column][row + 1].flag) {
+        currentField[column][row + 1].hide = false
+      }
+      if (!currentField[column + 1][row + 1].flag) {
+        currentField[column + 1][row + 1].hide = false
+      }
+      if (!currentField[column + 1][row].flag) {
+        currentField[column + 1][row].hide = false
+      }
+    }
+  }
+  if ((column === (COLUMN_NUMBER - 1)) && (row === 0)) {
+    if (currentField[column - 1][row].flag) {
+      flags += 1
+    }
+    if (currentField[column - 1][row + 1].flag) {
+      flags += 1
+    }
+    if (currentField[column][row + 1].flag) {
+      flags += 1
+    }
+    if (mines === flags) {
+      if (!currentField[column - 1][row].flag) {
+        currentField[column - 1][row].hide = false
+      }
+      if (!currentField[column - 1][row + 1].flag) {
+        currentField[column - 1][row + 1].hide = false
+      }
+      if (!currentField[column][row + 1].flag) {
+        currentField[column][row + 1].hide = false
+      }
+    }
+  }
+  if ((column === 0) && (row === (ROW_NUMBER - 1))) {
+    if (currentField[column][row - 1].flag) {
+      flags += 1
+    }
+    if (currentField[column + 1][row - 1].flag) {
+      flags += 1
+    }
+    if (currentField[column + 1][row].flag) {
+      flags += 1
+    }
+    if (mines === flags) {
+      if (!currentField[column][row - 1].flag) {
+        currentField[column][row - 1].hide = false
+      }
+      if (!currentField[column + 1][row - 1].flag) {
+        currentField[column + 1][row - 1].hide = false
+      }
+      if (!currentField[column + 1][row].flag) {
+        currentField[column + 1][row].hide = false
+      }
+    }
+  }
+  if ((column === (COLUMN_NUMBER - 1)) && (row === (ROW_NUMBER - 1))) {
+    if (currentField[column - 1][row].flag) {
+      flags += 1
+    }
+    if (currentField[column - 1][row - 1].flag) {
+      flags += 1
+    }
+    if (currentField[column][row - 1].flag) {
+      flags += 1
+    }
+    if (mines === flags) {
+      if (!currentField[column - 1][row].flag) {
+        currentField[column - 1][row].hide = false
+      }
+      if (!currentField[column - 1][row - 1].flag) {
+        currentField[column - 1][row - 1].hide = false
+      }
+      if (!currentField[column][row - 1].flag) {
+        currentField[column][row - 1].hide = false
       }
     }
   }
