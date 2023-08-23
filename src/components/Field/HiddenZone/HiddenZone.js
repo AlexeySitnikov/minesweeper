@@ -3,6 +3,7 @@
 import style from './style.module.css'
 import { Number } from '../Numbers/Number'
 import { openZone } from '../../constrains/openZone'
+import { openFreeZone } from '../../constrains/openFreeZone'
 
 export function HiddenZone(
   {
@@ -13,9 +14,11 @@ export function HiddenZone(
   const onClickFieldHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    // console.log(e.buttons)
     if ((e.buttons === 1) && (currentField[column][row].hide)) {
       currentField[column][row].hide = false
+      if (currentField[column][row].value === 0) {
+        openFreeZone()
+      }
       setField([...currentField])
     }
     if ((e.buttons === 2) && (currentField[column][row].hide)) {
@@ -24,9 +27,9 @@ export function HiddenZone(
     }
     if ((e.buttons === 3) && (!currentField[column][row].hide)) {
       if (currentField[column][row].value > 0) {
-        openZone({
-          field, setField, column, row,
-        })
+        setField([...openZone({
+          field, column, row,
+        })])
       }
     }
   }
