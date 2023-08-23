@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import style from './style.module.css'
 import { Number } from '../Numbers/Number'
+import { openZone } from '../../constrains/openZone'
 
 export function HiddenZone(
   {
@@ -20,6 +21,13 @@ export function HiddenZone(
     if ((e.buttons === 2) && (currentField[column][row].hide)) {
       currentField[column][row].flag = !currentField[column][row].flag
       setField([...currentField])
+    }
+    if ((e.buttons === 3) && (!currentField[column][row].hide)) {
+      if (currentField[column][row].value > 0) {
+        openZone({
+          field, setField, column, row,
+        })
+      }
     }
   }
 
