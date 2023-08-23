@@ -15,6 +15,8 @@ export function HiddenZone(
     e.preventDefault()
     e.stopPropagation()
     if ((e.buttons === 1) && (currentField[column][row].hide)) {
+      console.log({ column })
+      console.log({ row })
       currentField[column][row].hide = false
       if (currentField[column][row].value === 0) {
         openFreeZone()
