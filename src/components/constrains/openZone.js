@@ -1,287 +1,44 @@
 import { COLUMN_NUMBER } from './columnNumber'
+import { openZoneAtCenter } from './openZoneAtCenter'
+import { openZoneAtFirstColumn } from './openZoneAtFirstColumn'
+import { openZoneAtFirstRow } from './openZoneAtFirstRow'
+import { openZoneAtLastColumn } from './openZoneAtLastColumn'
+import { openZoneAtLastRow } from './openZoneAtLastRow'
+import { openZoneAtLowerLeftCorner } from './openZoneAtLowerLeftCorner'
+import { openZoneAtLowerRightCorner } from './openZoneAtLowerRightCorner'
+import { openZoneAtUpperLeftCorner } from './openZoneAtUpperLeftCorner'
+import { openZoneAtUpperRightCorner } from './openZoneAtUpperRightCorner'
 import { ROW_NUMBER } from './rowNumber'
 
 export function openZone({
   column, row, field,
 }) {
-  const currentField = field
-  const mines = currentField[column][row].value
-  let flags = 0
   if ((column > 0) && (column < COLUMN_NUMBER - 1) && (row > 0) && (row < ROW_NUMBER - 1)) {
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row - 1].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-      if (!currentField[column - 1][row - 1].flag) {
-        currentField[column - 1][row - 1].hide = false
-      }
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row + 1].flag) {
-        currentField[column - 1][row + 1].hide = false
-      }
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row + 1].flag) {
-        currentField[column + 1][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-      if (!currentField[column + 1][row - 1].flag) {
-        currentField[column + 1][row - 1].hide = false
-      }
-    }
+    return (openZoneAtCenter({ field, column, row }))
   }
   if ((column === 0) && (row !== 0) && (row !== ROW_NUMBER - 1)) {
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row - 1].flag) {
-        currentField[column + 1][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-      if (!currentField[column + 1][row + 1].flag) {
-        currentField[column + 1][row + 1].hide = false
-      }
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-    }
+    return (openZoneAtFirstColumn({ field, column, row }))
   }
   if ((column === COLUMN_NUMBER - 1) && (row !== 0) && (row !== ROW_NUMBER - 1)) {
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-      if (!currentField[column - 1][row + 1].flag) {
-        currentField[column - 1][row + 1].hide = false
-      }
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row - 1].flag) {
-        currentField[column - 1][row - 1].hide = false
-      }
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-    }
+    return (openZoneAtLastColumn({ field, column, row }))
   }
   if ((row === 0) && (column !== 0) && (column !== COLUMN_NUMBER - 1)) {
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row + 1].flag) {
-        currentField[column - 1][row + 1].hide = false
-      }
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row + 1].flag) {
-        currentField[column + 1][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-    }
+    return (openZoneAtFirstRow({ field, column, row }))
   }
   if ((row === ROW_NUMBER - 1) && (column !== 0) && (column !== COLUMN_NUMBER - 1)) {
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row - 1].flag) {
-        currentField[column - 1][row - 1].hide = false
-      }
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row - 1].flag) {
-        currentField[column + 1][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-    }
+    return (openZoneAtLastRow({ field, column, row }))
   }
   if ((column === 0) && (row === 0)) {
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row + 1].flag) {
-        currentField[column + 1][row + 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-    }
+    return (openZoneAtUpperLeftCorner({ field, column, row }))
   }
   if ((column === (COLUMN_NUMBER - 1)) && (row === 0)) {
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row + 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row + 1].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row + 1].flag) {
-        currentField[column - 1][row + 1].hide = false
-      }
-      if (!currentField[column][row + 1].flag) {
-        currentField[column][row + 1].hide = false
-      }
-    }
+    return (openZoneAtUpperRightCorner({ field, column, row }))
   }
   if ((column === 0) && (row === (ROW_NUMBER - 1))) {
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column + 1][row].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row - 1].flag) {
-        currentField[column + 1][row - 1].hide = false
-      }
-      if (!currentField[column + 1][row].flag) {
-        currentField[column + 1][row].hide = false
-      }
-    }
+    return (openZoneAtLowerLeftCorner({ field, column, row }))
   }
   if ((column === (COLUMN_NUMBER - 1)) && (row === (ROW_NUMBER - 1))) {
-    if (currentField[column - 1][row].flag) {
-      flags += 1
-    }
-    if (currentField[column - 1][row - 1].flag) {
-      flags += 1
-    }
-    if (currentField[column][row - 1].flag) {
-      flags += 1
-    }
-    if (mines === flags) {
-      if (!currentField[column - 1][row].flag) {
-        currentField[column - 1][row].hide = false
-      }
-      if (!currentField[column - 1][row - 1].flag) {
-        currentField[column - 1][row - 1].hide = false
-      }
-      if (!currentField[column][row - 1].flag) {
-        currentField[column][row - 1].hide = false
-      }
-    }
+    return (openZoneAtLowerRightCorner({ field, column, row }))
   }
-  return (currentField)
+  return (field)
 }
