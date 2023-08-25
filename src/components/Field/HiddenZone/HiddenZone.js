@@ -15,11 +15,12 @@ export function HiddenZone(
     e.preventDefault()
     e.stopPropagation()
     if ((e.buttons === 1) && (currentField[column][row].hide)) {
-      currentField[column][row].hide = false
-      if (currentField[column][row].value === 0) {
-        openFreeZone()
+      if ((currentField[column][row].value === 0) && (!currentField[column][row].mine)) {
+        setField([...openFreeZone({ field, column, row })])
+      } else {
+        currentField[column][row].hide = false
+        setField([...currentField])
       }
-      setField([...currentField])
     }
     if ((e.buttons === 2) && (currentField[column][row].hide)) {
       currentField[column][row].flag = !currentField[column][row].flag
