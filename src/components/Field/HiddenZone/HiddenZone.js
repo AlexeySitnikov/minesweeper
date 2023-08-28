@@ -1,8 +1,9 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import style from './style.module.css'
 import { Number } from '../Numbers/Number'
+import { openZone } from '../../constrains/openZone'
+import { openFreeZone } from '../../constrains/openFreeZone'
 
 export function HiddenZone(
   {
@@ -10,19 +11,27 @@ export function HiddenZone(
   },
 ) {
   const currentField = field
-
   const onClickFieldHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
-
-    if (e.buttons === 0) {
-      if (currentField[column][row] >= 10) {
-        currentField[column][row] -= 10
+    if ((e.buttons === 1) && (currentField[column][row].hide)) {
+      if ((currentField[column][row].value === 0) && (!currentField[column][row].mine)) {
+        setField([...openFreeZone({ field, column, row })])
       } else {
-        currentField[column][row] += 10
+        currentField[column][row].hide = false
+        setField([...currentField])
       }
-      setField(currentField)
-      console.log(field)
+    }
+    if ((e.buttons === 2) && (currentField[column][row].hide)) {
+      currentField[column][row].flag = !currentField[column][row].flag
+      setField([...currentField])
+    }
+    if ((e.buttons === 3) && (!currentField[column][row].hide)) {
+      if (currentField[column][row].value > 0) {
+        setField([...openZone({
+          field, column, row,
+        })])
+      }
     }
   }
 
@@ -30,15 +39,10 @@ export function HiddenZone(
     <div className={`${style.container}`}>
       <div
         className={`${style.square}`}
-        onClick={onClickFieldHandler}
+        onMouseDown={onClickFieldHandler}
         onContextMenu={(e) => e.preventDefault()}
       >
         <Number el={currentField[column][row]} />
-
-        {/* <div className={(hidden) ? `${style.hideSquare}` : `${style.unhideSquare}`}> */}
-        {/* {(flag) ? <img className={`${style.flag}`} src={`${flagLogo}`} alt="flag" /> : ''} */}
-
-        {/* </div> */}
 
       </div>
     </div>

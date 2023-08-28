@@ -3,6 +3,8 @@ import style from './style.module.css'
 
 export function Flag() {
   return (
-    <img className={`${style.flag}`} src={`${flagLogo}`} alt="flag" />
+    <div className={`${style.hideSquare}`}>
+      <img className={`${style.flag}`} src={`${flagLogo}`} alt="flag" />
+    </div>
   )
 }
