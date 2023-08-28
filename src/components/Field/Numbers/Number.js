@@ -5,10 +5,6 @@ import style from './style.module.css'
 
 export function Number({ el }) {
   const whatNumber = () => {
-    // if (el >= 10) {
-    //   console.log(el)
-    //   return (<Flag />)
-    // }
     switch (el) {
       case 1: return (<p className={`${style.digit_1}`}>{el}</p>)
       case 2: return (<p className={`${style.digit_2}`}>{el}</p>)
