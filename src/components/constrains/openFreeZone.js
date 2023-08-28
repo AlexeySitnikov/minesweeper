@@ -11,7 +11,6 @@ import { openFreeZoneAtUpperRightCorner } from './openFreeZoneAtUpperRightCorner
 import { ROW_NUMBER } from './rowNumber'
 
 export function openFreeZone({ field, column, row }) {
-  // console.log('asd')
   if ((column > 0) && (column < COLUMN_NUMBER - 1) && (row > 0) && (row < ROW_NUMBER - 1)) {
     return (openFreeZoneAtCenter({ field, column, row }))
   }

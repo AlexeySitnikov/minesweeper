@@ -1,7 +1,7 @@
 import { openFreeZone } from './openFreeZone'
 
 export function openZoneAtCenter({ field, column, row }) {
-  const currentField = field
+  let currentField = field
   let flags = 0
   const mines = currentField[column][row].value
   const arr = []
@@ -33,86 +33,78 @@ export function openZoneAtCenter({ field, column, row }) {
     if (!currentField[column][row - 1].flag) {
       currentField[column][row - 1].hide = false
       if (currentField[column][row - 1].value === 0) {
-        const o = {
+        arr.push({
           column,
           row: row - 1,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column - 1][row - 1].flag) {
       currentField[column - 1][row - 1].hide = false
       if (currentField[column - 1][row - 1].value === 0) {
-        const o = {
+        arr.push({
           column: column - 1,
           row: row - 1,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column - 1][row].flag) {
       currentField[column - 1][row].hide = false
       if (currentField[column - 1][row].value === 0) {
-        const o = {
+        arr.push({
           column: column - 1,
           row,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column - 1][row + 1].flag) {
       currentField[column - 1][row + 1].hide = false
       if (currentField[column - 1][row + 1].value === 0) {
-        const o = {
+        arr.push({
           column: column - 1,
           row: row + 1,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column][row + 1].flag) {
       currentField[column][row + 1].hide = false
       if (currentField[column][row + 1].value === 0) {
-        const o = {
+        arr.push({
           column,
           row: row + 1,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column + 1][row + 1].flag) {
       currentField[column + 1][row + 1].hide = false
       if (currentField[column + 1][row + 1].value === 0) {
-        const o = {
+        arr.push({
           column: column + 1,
           row: row + 1,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column + 1][row].flag) {
       currentField[column + 1][row].hide = false
       if (currentField[column + 1][row].value === 0) {
-        const o = {
+        arr.push({
           column: column + 1,
           row,
-        }
-        arr.push(o)
+        })
       }
     }
     if (!currentField[column + 1][row - 1].flag) {
       currentField[column + 1][row - 1].hide = false
       if (currentField[column + 1][row - 1].value === 0) {
-        const o = {
+        arr.push({
           column: column + 1,
           row: row - 1,
-        }
-        arr.push(o)
+        })
       }
     }
   }
   arr.forEach((el) => {
-    openFreeZone({ field: currentField, column: el.column, row: el.row })
+    currentField = openFreeZone({ field: currentField, column: el.column, row: el.row })
   })
   return (currentField)
 }
