@@ -1,3 +1,5 @@
+import { openFreeZone } from './openFreeZone'
+
 export function openZoneAtCenter({ field, column, row }) {
   const currentField = field
   let flags = 0
@@ -109,11 +111,8 @@ export function openZoneAtCenter({ field, column, row }) {
       }
     }
   }
-  // console.log({ arr })
   arr.forEach((el) => {
-    console.log(el.column)
-    console.log(el.row)
-    // openFreeZone(currentField, el.column, el.row)
+    openFreeZone({ field: currentField, column: el.column, row: el.row })
   })
   return (currentField)
 }
