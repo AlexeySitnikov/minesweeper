@@ -3,7 +3,7 @@
 import style from './style.module.css'
 import { Number } from '../Numbers/Number'
 import { openOneZone } from '../../constrains/openOneZone'
-import { openSquareZone } from '../../constrains/openSquareZone'
+import { getSquareZone } from '../../constrains/getSquareZone'
 import { isAllFlags } from '../../constrains/isAllFlags'
 
 export function HiddenZone(
@@ -31,8 +31,13 @@ export function HiddenZone(
       && (!currentField[column][row].hide)
     ) {
       // setField([...openSquareZone({ field, column, row })])
-      const { notFreeZoneArray } = openSquareZone({ field, column, row })
+      const { notFreeZoneArray, freeZoneArray } = getSquareZone({ field, column, row })
+      // console.log({ notFreeZoneArray })
+      // console.log({ freeZoneArray })
       notFreeZoneArray.forEach((el) => {
+        setField([...openOneZone({ field, column: el.column, row: el.row })])
+      })
+      freeZoneArray.forEach((el) => {
         setField([...openOneZone({ field, column: el.column, row: el.row })])
       })
     }
