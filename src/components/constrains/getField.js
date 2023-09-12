@@ -17,6 +17,7 @@ export function getField(columnNumber, rowNumber, mines) {
     const y = Math.floor(Math.random() * (rowNumber - 1 - 0 + 1) + 0)
     if (!field[x][y].mine) {
       field[x][y].mine = true
+      field[x][y].value = 9
     }
   }
 
