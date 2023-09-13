@@ -23,7 +23,9 @@ export function HiddenZone(
     ) {
       if (currentField[column][row].value === 0) {
         getAllConnectedZones({ field, column, row })
-        console.log('0')
+          .forEach((el) => {
+            setField([...openOneZone({ field, column: el.column, row: el.row })])
+          })
       }
 
       setField([...openOneZone({ field, column, row })])
