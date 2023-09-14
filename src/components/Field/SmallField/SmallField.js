@@ -6,7 +6,7 @@ import { ROW_NUMBER } from '../../constrains/rowNumber'
 import { COLUMN_NUMBER } from '../../constrains/columnNumber'
 
 export function SmallField() {
-  const [field, setField] = useState(getField(COLUMN_NUMBER, ROW_NUMBER, 5))
+  const [field, setField] = useState(getField(COLUMN_NUMBER, ROW_NUMBER, 10))
 
   return (
     <div className={`${style.field}`}>
