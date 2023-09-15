@@ -1,13 +1,9 @@
-import { useState } from 'react'
-import { getField } from '../../constrains/getField'
 import { VerticalLine } from './VerticalLine'
 import style from './style.module.css'
-import { ROW_NUMBER } from '../../constrains/rowNumber'
-import { COLUMN_NUMBER } from '../../constrains/columnNumber'
 
-export function SmallField() {
-  const [field, setField] = useState(getField(COLUMN_NUMBER, ROW_NUMBER, 10))
-
+export function SmallField({
+  field, setField, exploded, setExploded, firstButtonPressed, setFirstButtonPressed,
+}) {
   return (
     <div className={`${style.field}`}>
       {field.map((el, index) => (
@@ -16,6 +12,10 @@ export function SmallField() {
           column={index}
           field={field}
           setField={setField}
+          exploded={exploded}
+          setExploded={setExploded}
+          firstButtonPressed={firstButtonPressed}
+          setFirstButtonPressed={setFirstButtonPressed}
           key={crypto.randomUUID()}
         />
       ))}

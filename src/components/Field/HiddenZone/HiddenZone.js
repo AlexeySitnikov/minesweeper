@@ -3,13 +3,13 @@
 import style from './style.module.css'
 import { Number } from '../Numbers/Number'
 import { openOneZone } from '../../constrains/openOneZone'
-import { getSquareZone } from '../../constrains/getSquareZone'
 import { isAllFlags } from '../../constrains/isAllFlags'
 import { openFreeZone } from '../../constrains/openFreeZone'
+import { openSquareZone } from '../../constrains/openSquareZone'
 
 export function HiddenZone(
   {
-    column, row, field, setField,
+    column, row, field, setField, exploded, setExploded, firstButtonPressed, setFirstButtonPressed,
   },
 ) {
   const currentField = field
@@ -18,40 +18,48 @@ export function HiddenZone(
     e.preventDefault()
     e.stopPropagation()
 
+    // press button to start timer
+    if (!firstButtonPressed) {
+      setFirstButtonPressed(true)
+    }
+
+    // left button pressed
     if (
-      (e.buttons === 1) && (currentField[column][row].hide) && (!currentField[column][row].flag)
+      (e.buttons === 1)
+      && (currentField[column][row].hide)
+      && (!currentField[column][row].flag)
+      && (!exploded)
     ) {
       if (currentField[column][row].value === 0) {
         openFreeZone({
           field: currentField, column, row, setField,
         })
       }
-      setField([...openOneZone({ field: currentField, column, row })])
+      if (currentField[column][row].mine) {
+        setExploded(true)
+      }
+      setField([...openOneZone({
+        field: currentField, column, row,
+      })])
     }
 
-    if ((e.buttons === 2) && (currentField[column][row].hide)) {
+    // right button pressed
+    if ((e.buttons === 2) && (currentField[column][row].hide) && (!exploded)) {
       currentField[column][row].flag = !currentField[column][row].flag
       setField([...currentField])
     }
 
+    // middle button pressed
     if (
       ((e.buttons === 3) || ((e.buttons === 4)))
       && (!currentField[column][row].flag)
       && (isAllFlags({ field, column, row }))
       && (!currentField[column][row].hide)
+      && (!exploded)
     ) {
-      getSquareZone({ field: currentField, column, row })
-        .notFreeZoneArray.forEach((el) => {
-          setField([...openOneZone({ field: currentField, column: el.column, row: el.row })])
-        })
-
-      getSquareZone({ field: currentField, column, row })
-        .freeZoneArray.forEach((el) => {
-          setField([...openOneZone({ field: currentField, column: el.column, row: el.row })])
-          openFreeZone({
-            field: currentField, column: el.column, row: el.row, setField,
-          })
-        })
+      openSquareZone({
+        field: currentField, column, row, setField, setExploded,
+      })
     }
   }
 
