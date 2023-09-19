@@ -1,7 +1,7 @@
 import { VerticalLine } from './VerticalLine'
 import style from './style.module.css'
 
-export function SmallField({ field, ...props }) {
+export function BigField({ field, ...props }) {
   return (
     <div className={`${style.field}`}>
       {field.map((el, index) => (

@@ -5,6 +5,13 @@
 }
 
 .counterButtonClock{
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr;
+  margin-top: 16px;
+}
+
+.difficultySelector{
   display: flex;
-  justify-content: space-evenly;
+  width: 25%;
+  margin-top: 8px;
 }

@@ -1,11 +1,15 @@
 import { Difficulty } from './Difficulty'
+import style from './style.module.css'
 
-export function DifficultySelector() {
-  const difficulty = [1, 2, 3]
+export function DifficultySelector({ difficulty, setDifficulty }) {
+  const difficultyArray = ['Begginer', 'Intermediate', 'Expert']
+  const onSelectHandler = (e) => {
+    setDifficulty(e.target.value)
+  }
   return (
-    <select>
-      {difficulty.map((el) => (
-        <Difficulty difficulty={el} key={crypto.randomUUID()} />
+    <select className={`${style.difficultySelector}`} onChange={onSelectHandler} defaultValue={difficulty}>
+      {difficultyArray.map((el) => (
+        <Difficulty difficult={el} key={crypto.randomUUID()} />
       ))}
     </select>
   )

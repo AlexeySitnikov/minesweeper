@@ -12,14 +12,24 @@ export function getField(columnNumber, rowNumber, mines) {
     }
   }
 
-  for (let i = 0; i < mines; i += 1) {
+  let mineCounter = 1
+  while (mineCounter <= mines) {
     const x = Math.floor(Math.random() * (columnNumber - 1 - 0 + 1) + 0)
     const y = Math.floor(Math.random() * (rowNumber - 1 - 0 + 1) + 0)
     if (!field[x][y].mine) {
       field[x][y].mine = true
       field[x][y].value = 9
+      mineCounter += 1
     }
   }
+  // for (let i = 1; i <= mines; i += 1) {
+  //   const x = Math.floor(Math.random() * (columnNumber - 1 - 0 + 1) + 0)
+  //   const y = Math.floor(Math.random() * (rowNumber - 1 - 0 + 1) + 0)
+  //   if (!field[x][y].mine) {
+  //     field[x][y].mine = true
+  //     field[x][y].value = 9
+  //   }
+  // }
 
   for (let i = 1; i < columnNumber - 1; i += 1) {
     for (let j = 1; j < rowNumber - 1; j += 1) {

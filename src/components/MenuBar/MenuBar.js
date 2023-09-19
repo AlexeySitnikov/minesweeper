@@ -4,25 +4,23 @@ import { MinesCounter } from './MinesCounter/MinesCounter'
 import { RestartButton } from './RestartButton/RestartButton'
 import style from './style.module.css'
 
-export function MenuBar({
-  setField, exploded, setExploded, firstButtonPressed, setFirstButtonPressed, seconds, setSeconds,
-}) {
+export function MenuBar({ ...props }) {
   return (
     <div className={`${style.container}`}>
-      <DifficultySelector />
+      <div className={`${style.difficultySelector}`}>
+        <DifficultySelector
+          {...props}
+        />
+      </div>
       <div className={`${style.counterButtonClock}`}>
-        <MinesCounter />
+        <MinesCounter
+          {...props}
+        />
         <RestartButton
-          setField={setField}
-          exploded={exploded}
-          setExploded={setExploded}
-          setFirstButtonPressed={setFirstButtonPressed}
-          setSeconds={setSeconds}
+          {...props}
         />
         <Clock
-          firstButtonPressed={firstButtonPressed}
-          seconds={seconds}
-          setSeconds={setSeconds}
+          {...props}
         />
       </div>
     </div>

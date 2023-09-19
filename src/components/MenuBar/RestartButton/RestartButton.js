@@ -6,7 +6,7 @@ import smileFace from '../../constrains/smileFace.png'
 import style from './style.module.css'
 
 export function RestartButton({
-  setField, exploded, setExploded, setFirstButtonPressed, setSeconds,
+  setField, exploded, setExploded, setFirstButtonPressed, setSeconds, setMines,
 }) {
   const onClickRestartButtonHandler = (e) => {
     e.preventDefault()
@@ -15,6 +15,7 @@ export function RestartButton({
     setExploded(false)
     setFirstButtonPressed(false)
     setSeconds(0)
+    setMines(10)
   }
 
   if (exploded) {

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'digital';
+  src: url('../../constrains/digital-7/digital-7.ttf');
+}
+
+.minesCounter{
+  display: flex;
+  justify-content: center;
+  font-family:'digital';
+  color: red;
+  font-size: 3rem;
+  font-weight: bold;
+ }

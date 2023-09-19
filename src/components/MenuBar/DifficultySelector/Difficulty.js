@@ -1,5 +1,5 @@
-export function Difficulty() {
+export function Difficulty({ difficult }) {
   return (
-    <option>asd</option>
+    <option value={difficult}>{difficult}</option>
   )
 }

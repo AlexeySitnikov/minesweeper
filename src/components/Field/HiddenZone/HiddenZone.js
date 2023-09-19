@@ -10,6 +10,7 @@ import { openSquareZone } from '../../constrains/openSquareZone'
 export function HiddenZone(
   {
     column, row, field, setField, exploded, setExploded, firstButtonPressed, setFirstButtonPressed,
+    mines, setMines,
   },
 ) {
   const currentField = field
@@ -46,6 +47,12 @@ export function HiddenZone(
     // right button pressed
     if ((e.buttons === 2) && (currentField[column][row].hide) && (!exploded)) {
       currentField[column][row].flag = !currentField[column][row].flag
+      if (currentField[column][row].flag) {
+        setMines(mines - 1)
+      }
+      if (!currentField[column][row].flag) {
+        setMines(mines + 1)
+      }
       setField([...currentField])
     }
 
