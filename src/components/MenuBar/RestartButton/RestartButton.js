@@ -7,7 +7,14 @@ import style from './style.module.css'
 import { difficult } from '../../constrains/difficult'
 
 export function RestartButton({
-  setField, exploded, setExploded, setFirstButtonPressed, setSeconds, setMines, difficulty,
+  setField,
+  exploded,
+  setExploded,
+  setFirstButtonPressed,
+  setSeconds,
+  setMines,
+  difficulty,
+  setDifficulty,
 }) {
   const onClickRestartButtonHandler = (e) => {
     e.preventDefault()
@@ -19,6 +26,7 @@ export function RestartButton({
         difficult.Begginer.mines,
       ))
       setMines(difficult.Begginer.mines)
+      setDifficulty('Begginer')
     } else if (difficulty === 'Intermediate') {
       setField(getField(
         difficult.Intermediate.columns,
@@ -26,6 +34,7 @@ export function RestartButton({
         difficult.Intermediate.mines,
       ))
       setMines(difficult.Intermediate.mines)
+      setDifficulty('Intermediate')
     } else {
       setField(getField(
         difficult.Expert.columns,
@@ -33,6 +42,7 @@ export function RestartButton({
         difficult.Expert.mines,
       ))
       setMines(difficult.Expert.mines)
+      setDifficulty('Expert')
     }
     setExploded(false)
     setFirstButtonPressed(false)
