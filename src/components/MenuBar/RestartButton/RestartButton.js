@@ -1,6 +1,4 @@
-// import { COLUMN_NUMBER } from '../../constrains/columnNumber'
 import { getField } from '../../constrains/getField'
-// import { ROW_NUMBER } from '../../constrains/rowNumber'
 import deadFace from '../../constrains/deadFace.jpg'
 import smileFace from '../../constrains/smileFace.png'
 import style from './style.module.css'

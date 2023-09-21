@@ -7,7 +7,7 @@ export function DifficultySelector({ difficulty, setDifficulty }) {
     setDifficulty(e.target.value)
   }
   return (
-    <select className={`${style.difficultySelector}`} onChange={onSelectHandler} defaultValue={difficulty}>
+    <select className={`${style.difficultySelector}`} onChange={onSelectHandler} value={difficulty}>
       {difficultyArray.map((el) => (
         <Difficulty difficult={el} key={crypto.randomUUID()} />
       ))}
