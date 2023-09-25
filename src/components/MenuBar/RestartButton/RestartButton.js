@@ -1,6 +1,6 @@
 import { getField } from '../../constrains/getField'
 import deadFace from '../../constrains/deadFace.jpg'
-import smileFace from '../../constrains/smileFace.png'
+import smileFace from '../../constrains/smileFace.jpg'
 import style from './style.module.css'
 import { difficult } from '../../constrains/difficult'
 
@@ -49,14 +49,14 @@ export function RestartButton({
 
   if (exploded) {
     return (
-      <button type="button" onClick={onClickRestartButtonHandler}>
-        <img className={`${style.Faces}`} src={deadFace} alt="deadFace" />
+      <button className={`${style.faceButton}`} type="button" onClick={onClickRestartButtonHandler}>
+        <img className={`${style.Face}`} src={deadFace} alt="deadFace" />
       </button>
     )
   }
   return (
-    <button type="button" onClick={onClickRestartButtonHandler}>
-      <img className={`${style.Faces}`} src={smileFace} alt="deadFace" />
+    <button className={`${style.faceButton}`} type="button" onClick={onClickRestartButtonHandler}>
+      <img className={`${style.Face}`} src={smileFace} alt="deadFace" />
     </button>
   )
 }

@@ -5,8 +5,10 @@
 }
 
 .counterButtonClock{
+  /* display: flex;
+  justify-content: space-around; */
   display: grid;
-  grid-template-columns:1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-top: 16px;
 }
 

@@ -1,3 +1,8 @@
-.Faces{
+.faceButton{
+  border: none;
+  background-color: inherit;
+}
+
+.Face{
   width: 32px;
 }

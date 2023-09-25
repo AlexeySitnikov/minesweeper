@@ -5,12 +5,15 @@ import { ExpertGame } from './Game/ExpertGame'
 
 export function Field() {
   const [difficulty, setDifficulty] = useState('Expert')
+  const [face, setFace] = useState('smileFace')
 
   if (difficulty === 'Begginer') {
     return (
       <BegginerGame
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        face={face}
+        setFace={setFace}
       />
     )
   }
@@ -19,6 +22,8 @@ export function Field() {
       <IntermediateGame
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        face={face}
+        setFace={setFace}
       />
     )
   }
@@ -26,6 +31,8 @@ export function Field() {
     <ExpertGame
       difficulty={difficulty}
       setDifficulty={setDifficulty}
+      face={face}
+      setFace={setFace}
     />
   )
 }

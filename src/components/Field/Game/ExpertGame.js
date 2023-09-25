@@ -5,7 +5,9 @@ import style from './style.module.css'
 import { MenuBar } from '../../MenuBar/MenuBar'
 import { BigField } from '../BigField/BigField'
 
-export function ExpertGame({ difficulty, setDifficulty }) {
+export function ExpertGame({
+  difficulty, setDifficulty, face, setFace,
+}) {
   const [mines, setMines] = useState(difficult.Expert.mines)
   const [field, setField] = useState(
     getField(
@@ -33,6 +35,7 @@ export function ExpertGame({ difficulty, setDifficulty }) {
           setMines={setMines}
           difficulty={difficulty}
           setDifficulty={setDifficulty}
+          face={face}
         />
         <div className={`${style.Field}`}>
           <BigField
@@ -44,6 +47,7 @@ export function ExpertGame({ difficulty, setDifficulty }) {
             setFirstButtonPressed={setFirstButtonPressed}
             mines={mines}
             setMines={setMines}
+            setFace={setFace}
           />
         </div>
       </div>
