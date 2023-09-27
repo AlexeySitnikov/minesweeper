@@ -1,18 +1,17 @@
 import { getField } from '../../constrains/getField'
-import deadFace from '../../constrains/deadFace.jpg'
-import smileFace from '../../constrains/smileFace.jpg'
 import style from './style.module.css'
 import { difficult } from '../../constrains/difficult'
 
 export function RestartButton({
   setField,
-  exploded,
   setExploded,
   setFirstButtonPressed,
   setSeconds,
   setMines,
   difficulty,
   setDifficulty,
+  face,
+  setFace,
 }) {
   const onClickRestartButtonHandler = (e) => {
     e.preventDefault()
@@ -25,6 +24,7 @@ export function RestartButton({
       ))
       setMines(difficult.Begginer.mines)
       setDifficulty('Begginer')
+      setFace('smileFace')
     } else if (difficulty === 'Intermediate') {
       setField(getField(
         difficult.Intermediate.columns,
@@ -33,6 +33,7 @@ export function RestartButton({
       ))
       setMines(difficult.Intermediate.mines)
       setDifficulty('Intermediate')
+      setFace('smileFace')
     } else {
       setField(getField(
         difficult.Expert.columns,
@@ -41,22 +42,16 @@ export function RestartButton({
       ))
       setMines(difficult.Expert.mines)
       setDifficulty('Expert')
+      setFace('smileFace')
     }
     setExploded(false)
     setFirstButtonPressed(false)
     setSeconds(0)
   }
 
-  if (exploded) {
-    return (
-      <button className={`${style.faceButton}`} type="button" onClick={onClickRestartButtonHandler}>
-        <img className={`${style.Face}`} src={deadFace} alt="deadFace" />
-      </button>
-    )
-  }
   return (
     <button className={`${style.faceButton}`} type="button" onClick={onClickRestartButtonHandler}>
-      <img className={`${style.Face}`} src={smileFace} alt="deadFace" />
+      <img className={`${style.Face}`} src={face} alt="deadFace" />
     </button>
   )
 }

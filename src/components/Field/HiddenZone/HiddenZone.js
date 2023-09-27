@@ -6,11 +6,12 @@ import { openOneZone } from '../../constrains/openOneZone'
 import { isAllFlags } from '../../constrains/isAllFlags'
 import { openFreeZone } from '../../constrains/openFreeZone'
 import { openSquareZone } from '../../constrains/openSquareZone'
+import { getHiddenZones } from '../../constrains/getHiddenZones'
 
 export function HiddenZone(
   {
     column, row, field, setField, exploded, setExploded, firstButtonPressed, setFirstButtonPressed,
-    mines, setMines,
+    mines, setMines, setFace, setRunning, running, columnNumber, rowNumber, minesNumber,
   },
 ) {
   const currentField = field
@@ -22,6 +23,7 @@ export function HiddenZone(
     // press button to start timer
     if (!firstButtonPressed) {
       setFirstButtonPressed(true)
+      setRunning(true)
     }
 
     // left button pressed
@@ -29,7 +31,7 @@ export function HiddenZone(
       (e.buttons === 1)
       && (currentField[column][row].hide)
       && (!currentField[column][row].flag)
-      && (!exploded)
+      && (!exploded) && (running)
     ) {
       if (currentField[column][row].value === 0) {
         openFreeZone({
@@ -38,6 +40,7 @@ export function HiddenZone(
       }
       if (currentField[column][row].mine) {
         setExploded(true)
+        setFace('deadFace')
       }
       setField([...openOneZone({
         field: currentField, column, row,
@@ -45,7 +48,7 @@ export function HiddenZone(
     }
 
     // right button pressed
-    if ((e.buttons === 2) && (currentField[column][row].hide) && (!exploded)) {
+    if ((e.buttons === 2) && (currentField[column][row].hide) && (!exploded) && (running)) {
       currentField[column][row].flag = !currentField[column][row].flag
       if (currentField[column][row].flag) {
         setMines(mines - 1)
@@ -62,11 +65,25 @@ export function HiddenZone(
       && (!currentField[column][row].flag)
       && (isAllFlags({ field, column, row }))
       && (!currentField[column][row].hide)
-      && (!exploded)
+      && (!exploded) && (running)
     ) {
       openSquareZone({
         field: currentField, column, row, setField, setExploded,
       })
+      setFace('searchFace')
+    }
+  }
+
+  const onMouseUpClickHandler = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    // console.log(mines)
+    if (!exploded) {
+      setFace('smileFace')
+    }
+    if (!exploded && (getHiddenZones({ field, columnNumber, rowNumber }) === minesNumber)) {
+      setFace('coolFace')
+      setRunning(false)
     }
   }
 
@@ -75,6 +92,7 @@ export function HiddenZone(
       <div
         className={`${style.square}`}
         onMouseDown={onClickFieldHandler}
+        onMouseUp={onMouseUpClickHandler}
         onContextMenu={(e) => e.preventDefault()}
       >
         <Number el={currentField[column][row]} />

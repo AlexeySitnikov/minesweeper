@@ -5,10 +5,11 @@ export function Clock({
   exploded,
   seconds,
   setSeconds,
+  running,
 }) {
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!exploded) {
+      if (!exploded && running) {
         setSeconds(seconds + 1)
       }
     }, 1000)

@@ -2,18 +2,22 @@ import { useState } from 'react'
 import { BegginerGame } from './Game/BegginerGame'
 import { IntermediateGame } from './Game/IntermediateGame'
 import { ExpertGame } from './Game/ExpertGame'
+import { getFace } from '../Faces/getFace'
 
 export function Field() {
   const [difficulty, setDifficulty] = useState('Expert')
   const [face, setFace] = useState('smileFace')
+  const [running, setRunning] = useState(true)
 
   if (difficulty === 'Begginer') {
     return (
       <BegginerGame
         difficulty={difficulty}
         setDifficulty={setDifficulty}
-        face={face}
+        face={getFace(face)}
         setFace={setFace}
+        running={running}
+        setRunning={setRunning}
       />
     )
   }
@@ -22,8 +26,10 @@ export function Field() {
       <IntermediateGame
         difficulty={difficulty}
         setDifficulty={setDifficulty}
-        face={face}
+        face={getFace(face)}
         setFace={setFace}
+        running={running}
+        setRunning={setRunning}
       />
     )
   }
@@ -31,8 +37,10 @@ export function Field() {
     <ExpertGame
       difficulty={difficulty}
       setDifficulty={setDifficulty}
-      face={face}
+      face={getFace(face)}
       setFace={setFace}
+      running={running}
+      setRunning={setRunning}
     />
   )
 }

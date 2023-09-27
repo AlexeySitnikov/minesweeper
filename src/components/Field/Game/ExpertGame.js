@@ -6,7 +6,7 @@ import { MenuBar } from '../../MenuBar/MenuBar'
 import { BigField } from '../BigField/BigField'
 
 export function ExpertGame({
-  difficulty, setDifficulty, face, setFace,
+  difficulty, setDifficulty, ...props
 }) {
   const [mines, setMines] = useState(difficult.Expert.mines)
   const [field, setField] = useState(
@@ -20,6 +20,8 @@ export function ExpertGame({
   const [exploded, setExploded] = useState(false)
   const [firstButtonPressed, setFirstButtonPressed] = useState(false)
   const [seconds, setSeconds] = useState(0)
+  const [running, setRunning] = useState(false)
+
   return (
     <div className={`${style.container}`}>
       <div>
@@ -35,7 +37,8 @@ export function ExpertGame({
           setMines={setMines}
           difficulty={difficulty}
           setDifficulty={setDifficulty}
-          face={face}
+          running={running}
+          {...props}
         />
         <div className={`${style.Field}`}>
           <BigField
@@ -47,7 +50,11 @@ export function ExpertGame({
             setFirstButtonPressed={setFirstButtonPressed}
             mines={mines}
             setMines={setMines}
-            setFace={setFace}
+            setRunning={setRunning}
+            columnNumber={difficult.Expert.columns}
+            rowNumber={difficult.Expert.rows}
+            minesNumber={difficult.Expert.mines}
+            {...props}
           />
         </div>
       </div>

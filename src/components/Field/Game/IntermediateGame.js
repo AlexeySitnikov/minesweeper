@@ -5,7 +5,7 @@ import style from './style.module.css'
 import { MenuBar } from '../../MenuBar/MenuBar'
 import { MediumField } from '../MediumField/MediumField'
 
-export function IntermediateGame({ difficulty, setDifficulty }) {
+export function IntermediateGame({ difficulty, setDifficulty, ...props }) {
   const [mines, setMines] = useState(difficult.Intermediate.mines)
   const [field, setField] = useState(
     getField(
@@ -18,6 +18,7 @@ export function IntermediateGame({ difficulty, setDifficulty }) {
   const [exploded, setExploded] = useState(false)
   const [firstButtonPressed, setFirstButtonPressed] = useState(false)
   const [seconds, setSeconds] = useState(0)
+  const [running, setRunning] = useState(false)
   return (
 
     <div className={`${style.container}`}>
@@ -34,6 +35,8 @@ export function IntermediateGame({ difficulty, setDifficulty }) {
           setMines={setMines}
           difficulty={difficulty}
           setDifficulty={setDifficulty}
+          running={running}
+          {...props}
         />
         <div className={`${style.Field}`}>
           <MediumField
@@ -45,6 +48,11 @@ export function IntermediateGame({ difficulty, setDifficulty }) {
             setFirstButtonPressed={setFirstButtonPressed}
             mines={mines}
             setMines={setMines}
+            setRunning={setRunning}
+            columnNumber={difficult.Intermediate.columns}
+            rowNumber={difficult.Intermediate.rows}
+            minesNumber={difficult.Intermediate.mines}
+            {...props}
           />
         </div>
       </div>
