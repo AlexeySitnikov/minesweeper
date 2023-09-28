@@ -17,3 +17,9 @@
   width: 25%;
   margin-top: 8px;
 }
+
+.clock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
