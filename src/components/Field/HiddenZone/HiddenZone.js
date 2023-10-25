@@ -77,7 +77,6 @@ export function HiddenZone(
   const onMouseUpClickHandler = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    // console.log(mines)
     if (!exploded) {
       setFace('smileFace')
     }
